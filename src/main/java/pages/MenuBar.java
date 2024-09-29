@@ -8,8 +8,8 @@ public class MenuBar {
 
     private By categories = By.className("card_travel");
     private By signupAndLogin = By.className("fa-lock");
-    private By logout = By.xpath("//a[@href='/logout']");
-    private By deleteAccount = By.className("fa-trash-o");
+    protected By logout = By.xpath("//a[@href='/logout']");
+    protected By deleteAccount = By.className("fa-trash-o");
 
     public MenuBar(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -25,9 +25,14 @@ public class MenuBar {
         return new SignUpAndLogin(driver);
     }
 
-    public HomePage assertAccountCreationSuccess() {
-        driver.element().assertThat(logout).isVisible();
-        driver.element().assertThat(deleteAccount).isVisible();
-        return new HomePage(driver);
+    public SignUpAndLogin logOut() {
+        driver.element().click(logout);
+        return new SignUpAndLogin(driver);
     }
+
+    public SignUpAndLogin isLogOutDisplayed() {
+        driver.element().assertThat(logout).doesNotExist();
+        return new SignUpAndLogin(driver);
+    }
+
 }

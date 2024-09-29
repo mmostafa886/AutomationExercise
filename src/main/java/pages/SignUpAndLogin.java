@@ -3,11 +3,13 @@ package pages;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 
-public class SignUpAndLogin {
+public class SignUpAndLogin extends MenuBar{
 
     private SHAFT.GUI.WebDriver driver;
 
     private By loginButton = By.xpath("//button[@data-qa='login-button']");
+    private By loginEmail = By.xpath("//input[@data-qa='login-email']");
+    private By loginPassword = By.xpath("//input[@data-qa='login-password']");
     private By signUpButton = By.xpath("//button[@data-qa='signup-button']");
     private By signupName = By.xpath("//input[@data-qa='signup-name']");
     private By signupEmail = By.xpath("//input[@data-qa='signup-email']");
@@ -31,6 +33,7 @@ public class SignUpAndLogin {
 
 
     public SignUpAndLogin(SHAFT.GUI.WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
@@ -70,6 +73,13 @@ public class SignUpAndLogin {
         driver.element().click(createAccountButton);
 
         return new AccountCreatedPage(driver);
+    }
+
+    public HomePage userLogin(String emailAddress, String password) {
+        driver.element().type(loginEmail, emailAddress);
+        driver.element().type(loginPassword, password);
+        driver.element().click(loginButton);
+        return new HomePage(driver);
     }
 
 

@@ -7,6 +7,7 @@ import pages.*;
 
 public class TestClass {
     SHAFT.GUI.WebDriver driver;
+    SHAFT.TestData.JSON testData;
     HomePage homePage;
     ProductsPage productsPage;
     MenuBar menuBar;
@@ -45,12 +46,20 @@ public class TestClass {
     }
 
     @Test
-    public void thirdTestMethod() {
+    public void registerNewUserAndLoginTest() {
+        testData= new SHAFT.TestData.JSON("src/test/resources/testDataFiles/AccountData.json");
         menuBar = new MenuBar(driver);
         signUpAndLogin = menuBar.goToSinUpAndLoginPage();
-        accountCreatedPage = signUpAndLogin.createAccount(randomName, randomName + "@email.com", randomName, "FirstName", "LastName"
-                , "Street001, 12487", "Canada", "Ontario", "Small City", "00000", "123456789");
+        accountCreatedPage = signUpAndLogin.createAccount(randomName, randomName + "@email.com", randomName
+                , testData.getTestData("FirstName"), testData.getTestData("LastName")
+                , testData.getTestData("Address"), testData.getTestData( "Country")
+                , testData.getTestData( "State"), testData.getTestData( "City")
+                , testData.getTestData("Zipcode"), testData.getTestData("Mobile"));
         accountCreatedPage.assertSuccessMessageVisibility();
-        accountCreatedPage.pressConitueButton().assertAccountCreationSuccess();
+        homePage = accountCreatedPage.pressConitueButton().assertLoginSuccess();
+        signUpAndLogin = homePage.logOut().isLogOutDisplayed();
+        signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess();
     }
+
+
 }

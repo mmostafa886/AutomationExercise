@@ -3,13 +3,14 @@ package pages;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 
-public class AccountCreatedPage {
+public class AccountCreatedPage extends MenuBar{
 
     SHAFT.GUI.WebDriver driver;
     private By successMessage = By.xpath("//h2[@data-qa='account-created']");
     private By continueButton = By.xpath("//a[@data-qa='continue-button']");
 
     public AccountCreatedPage(SHAFT.GUI.WebDriver driver) {
+        super(driver);
         this.driver=driver;
     }
 
@@ -18,8 +19,8 @@ public class AccountCreatedPage {
         return this;
     }
 
-    public MenuBar pressConitueButton() {
+    public HomePage pressConitueButton() {
         driver.element().click(continueButton);
-        return new MenuBar(driver);
+        return new HomePage(driver);
     }
 }

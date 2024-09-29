@@ -3,7 +3,7 @@ package pages;
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 
-public class ProductsPage {
+public class ProductsPage extends MenuBar{
     SHAFT.GUI.WebDriver driver;
 
     private By advertiseArea = By.id("advertisement");
@@ -12,6 +12,7 @@ public class ProductsPage {
     private By serachProductField = By.id("search_product");
 
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
