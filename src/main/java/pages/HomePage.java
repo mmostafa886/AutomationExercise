@@ -1,6 +1,7 @@
 package pages;
 
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class HomePage extends MenuBar {
@@ -22,6 +23,7 @@ public class HomePage extends MenuBar {
         driver.element().isElementDisplayed(appLogo);
     }
 
+    @Step("Navigate to the App homepage")
     public HomePage openAutomationExerciseWebSite() {
         driver.browser().navigateToURL(webBaseUrl);
         if (driver.element().isElementDisplayed(homeConcent)) {
@@ -36,6 +38,7 @@ public class HomePage extends MenuBar {
         return this;
     }
 
+    @Step("Login process completed successfully")
     public HomePage assertLoginSuccess() {
         driver.element().assertThat(logout).isVisible();
 //        driver.element().assertThat(deleteAccount).isVisible();

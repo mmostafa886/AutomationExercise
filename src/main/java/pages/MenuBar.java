@@ -1,6 +1,7 @@
 package pages;
 
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class MenuBar {
@@ -20,11 +21,13 @@ public class MenuBar {
         return new ProductsPage(driver);
     }
 
+    @Step("Navigate to Signup/Login page")
     public SignUpAndLogin goToSinUpAndLoginPage() {
         driver.element().click(signupAndLogin);
         return new SignUpAndLogin(driver);
     }
 
+    @Step("Perform Logout")
     public SignUpAndLogin logOut() {
         driver.element().click(logout);
         return new SignUpAndLogin(driver);

@@ -1,6 +1,7 @@
 package pages;
 
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class SignUpAndLogin extends MenuBar{
@@ -54,6 +55,7 @@ public class SignUpAndLogin extends MenuBar{
         return this;
     }
 
+   @Step("Create New user account from Web")
     public AccountCreatedPage createAccount(String name, String emailAddress, String password, String firstName, String lastName, String address
             , String country, String state, String city, String zipCode, String mobileNumber) {
         signUpFirstStep(name, emailAddress);
@@ -75,6 +77,7 @@ public class SignUpAndLogin extends MenuBar{
         return new AccountCreatedPage(driver);
     }
 
+    @Step("Perform Login")
     public HomePage userLogin(String emailAddress, String password) {
         driver.element().type(loginEmail, emailAddress);
         driver.element().type(loginPassword, password);
