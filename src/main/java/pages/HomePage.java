@@ -42,6 +42,6 @@ public class HomePage extends MenuBar {
     public HomePage assertLoginSuccess() {
         driver.element().assertThat(logout).isVisible();
 //        driver.element().assertThat(deleteAccount).isVisible();
-        return new HomePage(driver);
+        return this;
     }
 }
