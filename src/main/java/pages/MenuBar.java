@@ -16,6 +16,7 @@ public class MenuBar {
         this.driver = driver;
     }
 
+    @Step("Navigate to Products page")
     public ProductsPage goToProductsPage() {
         driver.element().click(categories);
         return new ProductsPage(driver);

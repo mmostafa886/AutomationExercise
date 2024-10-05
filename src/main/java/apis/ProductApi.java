@@ -78,15 +78,19 @@ public class ProductApi {
         return this;
     }
 
-    @Step("Search for last product from the Products List")
-    public ProductApi searchForRandomProductFromTheProductsList() {
+    @Step("Get Random Product Name")
+    public String getRandomProductName() {
         List<Object> productsList = getListOfProducts();
         Random random = new Random();
         int productsListSize = productsList.size();
         int randomIndex = random.nextInt(productsListSize+1);
-        String lastProductName = getProductNameAtSpecificIndex(randomIndex);
-        searchForAPproduct(lastProductName);
-        asserProductNameAtSpecificIndex(0, lastProductName);
+        return getProductNameAtSpecificIndex(randomIndex);
+    }
+
+    @Step("Search for last product from the Products List")
+    public ProductApi searchForRandomProductFromTheProductsList() {
+        searchForAPproduct(getRandomProductName());
+        asserProductNameAtSpecificIndex(0, getRandomProductName());
         return this;
     }
 

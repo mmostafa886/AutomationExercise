@@ -1,3 +1,4 @@
+import apis.ProductApi;
 import apis.UserApi;
 import com.shaft.driver.SHAFT;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -6,17 +7,19 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class MixedTest extends TestBase{
+public class MixedTest extends TestBase {
     SHAFT.TestData.JSON testData;
     UserApi userApi;
+    ProductApi productApi;
     SignUpAndLogin signUpAndLogin;
+    ProductsPage productsPage;
 
     String randomName = RandomStringUtils.randomAlphanumeric(10).toLowerCase();
 
     @BeforeTest
     public void beforeTest() {
-       startAPIInstance();
-       startTheWebAppInstance();
+        startAPIInstance();
+        startTheWebAppInstance();
     }
 
     @AfterTest
@@ -41,11 +44,19 @@ public class MixedTest extends TestBase{
     }
 
 
+    @Test(description = "Search for a Product")
+    public void searchForProduct() {
+        productApi = new ProductApi(api);
+        String randomProductName = productApi.getProductsList().getRandomProductName();
+        productsPage = homePage.goToProductsPage();
+        productsPage.searchForProducts(randomProductName).compareResultsToSearchText(randomProductName);
+    }
+
     /**
      * This test won't work as the API ContentType is not JSON but URLENC
      */
-    @Test(enabled = false
-            , description = "Create New user account through API then Login from Web and delete account through API using JSON Request body")
+//    @Test(enabled = false
+//            , description = "Create New user account through API then Login from Web and delete account through API using JSON Request body")
     public void registerNewUserAPIAndLoginTestWithJSONBody() {
         userApi = new UserApi(api);
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/AccountData.json");
@@ -58,4 +69,6 @@ public class MixedTest extends TestBase{
         signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess();
         userApi.deleteAccount(randomName + "@email.com", randomName);
     }
+
+
 }
