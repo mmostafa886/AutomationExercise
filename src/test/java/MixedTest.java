@@ -39,7 +39,7 @@ public class MixedTest extends TestBase {
                         , testData.getTestData("Zipcode"), testData.getTestData("Mobile"))
                 .confirmUserCreationSuccess();
         signUpAndLogin = menuBar.goToSinUpAndLoginPage();
-        signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess();
+        signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess().logOut();
         userApi.deleteAccount(randomName + "@email.com", randomName);
     }
 
