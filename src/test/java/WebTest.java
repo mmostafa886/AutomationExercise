@@ -49,7 +49,7 @@ public class WebTest extends TestBase{
                 , testData.getTestData("Zipcode"), testData.getTestData("Mobile"));
         accountCreatedPage.assertSuccessMessageVisibility();
         homePage = accountCreatedPage.pressConitueButton().assertLoginSuccess();
-        signUpAndLogin = homePage.logOut().isLogOutDisplayed();
+        signUpAndLogin = homePage.getMenuBar().logOut().isLogOutDisplayed();
         signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess();
         userApi.deleteAccount(randomName + "@email.com", randomName);
     }

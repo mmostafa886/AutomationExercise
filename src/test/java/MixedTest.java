@@ -39,7 +39,7 @@ public class MixedTest extends TestBase {
                         , testData.getTestData("Zipcode"), testData.getTestData("Mobile"))
                 .confirmUserCreationSuccess();
         signUpAndLogin = menuBar.goToSinUpAndLoginPage();
-        signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess().logOut();
+        signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess().getMenuBar().logOut();
         userApi.deleteAccount(randomName + "@email.com", randomName);
     }
 
@@ -48,7 +48,7 @@ public class MixedTest extends TestBase {
     public void searchForProduct() {
         productApi = new ProductApi(api);
         String randomProductName = productApi.getProductsList().getRandomProductName();
-        productsPage = homePage.goToProductsPage();
+        productsPage = homePage.getMenuBar().goToProductsPage();
         productsPage.searchForProducts(randomProductName).compareResultsToSearchText(randomProductName);
     }
 

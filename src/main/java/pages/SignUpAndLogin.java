@@ -4,9 +4,10 @@ import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-public class SignUpAndLogin extends MenuBar{
+public class SignUpAndLogin {
 
     private SHAFT.GUI.WebDriver driver;
+    private MenuBar menuBar;
 
     private By loginButton = By.xpath("//button[@data-qa='login-button']");
     private By loginEmail = By.xpath("//input[@data-qa='login-email']");
@@ -34,8 +35,8 @@ public class SignUpAndLogin extends MenuBar{
 
 
     public SignUpAndLogin(SHAFT.GUI.WebDriver driver) {
-        super(driver);
         this.driver = driver;
+        this.menuBar = new MenuBar(driver);
     }
 
     private boolean isSignUpAndLoginPageOpened() {

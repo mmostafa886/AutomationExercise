@@ -40,7 +40,7 @@ executionAddress=dockerized
 targetOperatingSystem=LINUX
 ```
 4. It is better to use headless mode in `src/main/resources/properties/WebCapabilities.properties`
-```aiignore
+```
 headlessExecution=true
 ```
 5. For execution, it is better to use terminal run commands like: `mvn clean test -Dtest=DockerizedTest` instead of using the Intellij Class & test runner.
@@ -50,3 +50,26 @@ headlessExecution=true
 1. The `maximumPerformanceMode` property helps optimize the test duration by using values `0, 1, 2` for disable, headed mode & headless mode respectively.
 2. Using a mix of `Parallel Execution, Docker Execution Platform & maximumPerformanceMode` can greatly decrease the execution time especially with `headless` mode.
 3. A great feature is the test retrial `retryMaximumNumberOfAttempts` in `src/main/resources/properties/PlatformFlags.properties` which helps overcome the test flakiness & test failures because of environment reasons.
+4. It is better to use composition instead of inheritance+BaseClass  (Check the example below)
+```
+    private SHAFT.GUI.WebDriver driver ;
+    @Getter
+    private MenuBar menuBar;
+    
+        public HomePage(SHAFT.GUI.WebDriver driver) {
+        this.driver = driver;
+        this.menuBar = new MenuBar(driver);
+    }
+````
+  And if we need to use the menuBar instance in the same class
+```
+      @Step("Login process completed successfully")
+    public HomePage assertLoginSuccess() {
+        driver.element().assertThat(menuBar.logout).isVisible();
+        return this;
+    }  
+```
+Also if we want to use it inside a test
+```
+productsPage = homePage.getMenuBar().goToProductsPage();
+```

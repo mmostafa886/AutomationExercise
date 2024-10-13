@@ -2,20 +2,23 @@ package pages;
 
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.By;
 
-public class HomePage extends MenuBar {
+public class HomePage{
     private SHAFT.GUI.WebDriver driver ;
 
     private static String webBaseUrl = System.getProperty("baseUrl");
+    @Getter
+    private MenuBar menuBar;
 
     private By homeConcent = By.className("fc-cta-consent");
     private By appLogo = By.className("logo");
     private By categories = By.className("card_travel");
 
     public HomePage(SHAFT.GUI.WebDriver driver) {
-        super(driver);
         this.driver = driver;
+        this.menuBar = new MenuBar(driver);
     }
 
 
@@ -40,7 +43,7 @@ public class HomePage extends MenuBar {
 
     @Step("Login process completed successfully")
     public HomePage assertLoginSuccess() {
-        driver.element().assertThat(logout).isVisible();
+        driver.element().assertThat(menuBar.logout).isVisible();
 //        driver.element().assertThat(deleteAccount).isVisible();
         return this;
     }

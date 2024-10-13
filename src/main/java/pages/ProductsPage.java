@@ -7,8 +7,9 @@ import com.shaft.validation.Validations;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-public class ProductsPage extends MenuBar {
-    SHAFT.GUI.WebDriver driver;
+public class ProductsPage {
+    private SHAFT.GUI.WebDriver driver;
+    private MenuBar menuBar;
 
     private By advertiseArea = By.id("advertisement");
     private By allProductsArea = By.className("features_items");
@@ -28,8 +29,8 @@ public class ProductsPage extends MenuBar {
             .axisBy().followingSibling("p");
 
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
-        super(driver);
         this.driver = driver;
+        this.menuBar = new MenuBar(driver);
     }
 
     public boolean isProductsPageOpened() {
