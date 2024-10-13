@@ -27,6 +27,8 @@ setPreserveOrder=true
 setGroupByInstances=true
 setDataProviderThreadCount=1
 ```
+4. Multi-Threaded test has been added `src/test/java/MultiThreadedTest.java` using the `ThreadLocal<SHAFT.GUI.WebDriver> driver = new ThreadLocal<>();`and of course the consequent needed changes.
+5. The changes mentioned in the previous point helps to overcome the Driver problems related to parallel execution (Like closing the driver instance while there are other tests running).
 
 ## Docker Execution(With Cross-Browser testing)
 1. Make sure that `"Docker Desktop"` is installed on your local machine.
@@ -39,7 +41,12 @@ targetOperatingSystem=LINUX
 ```
 4. It is better to use headless mode in `src/main/resources/properties/WebCapabilities.properties`
 ```aiignore
-headlessExecution=rue
+headlessExecution=true
 ```
 5. For execution, it is better to use terminal run commands like: `mvn clean test -Dtest=DockerizedTest` instead of using the Intellij Class & test runner.
 6. The Safari docker test are always failing due to issue with the Safari docker image `(Can't be solved, latest image is very old & this is something known for Safari & docker)`
+
+## General Notes
+1. The `maximumPerformanceMode` property helps optimize the test duration by using values `0, 1, 2` for disable, headed mode & headless mode respectively.
+2. Using a mix of `Parallel Execution, Docker Execution Platform & maximumPerformanceMode` can greatly decrease the execution time especially with `headless` mode.
+3. A great feature is the test retrial `retryMaximumNumberOfAttempts` in `src/main/resources/properties/PlatformFlags.properties` which helps overcome the test flakiness & test failures because of environment reasons.
