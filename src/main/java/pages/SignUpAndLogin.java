@@ -2,11 +2,13 @@ package pages;
 
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.By;
 
 public class SignUpAndLogin {
 
     private SHAFT.GUI.WebDriver driver;
+    @Getter
     private MenuBar menuBar;
 
     private By loginButton = By.xpath("//button[@data-qa='login-button']");
