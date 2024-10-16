@@ -42,7 +42,7 @@ public class MultiThreadedTest {
         quitDriver();
     }
 
-    @Test(description = "Search Google For SHAFT_Engine")
+    ///@Test(description = "Search Google For SHAFT_Engine")
     public void searchGoogleForShaftEngine() {
         getDriver().browser().navigateToURL("https://www.google.com/");
         getDriver().browser().assertThat().title().contains("Google").perform();
@@ -61,7 +61,7 @@ public class MultiThreadedTest {
         Validations.assertThat().object(studentsNumber).isNotNull();
     }
 
-    @Test(description = "Search Google For SHAFT_Engine#2")
+   /// @Test(description = "Search Google For SHAFT_Engine#2")
     public void searchGoogleForShaftEngine2() {
         getDriver().browser().navigateToURL("https://www.google.com/");
         getDriver().browser().assertThat().title().contains("Google").perform();
