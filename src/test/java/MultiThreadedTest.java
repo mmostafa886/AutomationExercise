@@ -34,7 +34,7 @@ public class MultiThreadedTest {
 
     @BeforeMethod
     public void startDriver() {
-       initializeDriver();
+        initializeDriver();
     }
 
     @AfterMethod
@@ -42,11 +42,13 @@ public class MultiThreadedTest {
         quitDriver();
     }
 
-    ///@Test(description = "Search Google For SHAFT_Engine")
+    @Test(description = "Search Google For SHAFT_Engine")
     public void searchGoogleForShaftEngine() {
         getDriver().browser().navigateToURL("https://www.google.com/");
         getDriver().browser().assertThat().title().contains("Google").perform();
-        getDriver().element().click(acceptAllButton);
+        if (getDriver().element().isElementDisplayed(acceptAllButton)) {
+            getDriver().element().click(acceptAllButton);
+        }
         getDriver().element().type(searchField, "SHAFT_Engine").keyPress(searchField, Keys.ENTER);
         getDriver().browser().assertThat().title().contains("SHAFT_Engine");
     }
@@ -61,11 +63,13 @@ public class MultiThreadedTest {
         Validations.assertThat().object(studentsNumber).isNotNull();
     }
 
-   /// @Test(description = "Search Google For SHAFT_Engine#2")
+    @Test(description = "Search Google For SHAFT_Engine#2")
     public void searchGoogleForShaftEngine2() {
         getDriver().browser().navigateToURL("https://www.google.com/");
         getDriver().browser().assertThat().title().contains("Google").perform();
-        getDriver().element().click(acceptAllButton);
+        if (getDriver().element().isElementDisplayed(acceptAllButton)) {
+            getDriver().element().click(acceptAllButton);
+        }
         getDriver().element().type(searchField, "SHAFT_Engine").keyPress(searchField, Keys.ENTER);
         getDriver().browser().assertThat().title().contains("SHAFT_Engine");
     }
