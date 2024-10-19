@@ -36,13 +36,9 @@ jobs:
       #Rename the generated allure report file to be index.html
     - name: Rename report to index.html
       run: |
-       cd ./allure-report
-       for file in *; do
-       mv "$file" "index.html"
-       break
-         done
+        mv ./allure-report/*_AllureReport.html ./allure-report/index.html
          
-    - name: Deploy report to Github Pages #Deploy the genarted html report to the 'Github_Pages' in order to be easily accessible
+    - name: Deploy report to Github Pages #Deploy the generated html report to the 'Github_Pages' in order to be easily accessible
       if: always() 
       #This means regardless of the previous step output, this step will be executed
       uses: peaceiris/actions-gh-pages@v2
