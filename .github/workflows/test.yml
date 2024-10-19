@@ -35,6 +35,7 @@ jobs:
  
       #Rename the generated allure report file to be index.html
     - name: Rename report to index.html
+      if: always()
       run: |
         mv ./allure-report/*_AllureReport.html ./allure-report/index.html
          
