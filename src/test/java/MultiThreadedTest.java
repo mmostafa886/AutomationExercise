@@ -67,7 +67,7 @@ public class MultiThreadedTest {
     public void searchGoogleForShaftEngine2() {
         getDriver().browser().navigateToURL("https://www.google.com/");
         getDriver().browser().assertThat().title().contains("Google").perform();
-        if (getDriver().element().isElementDisplayed(acceptAllButton)) {
+        if (getDriver().element().getElementsCount(acceptAllButton)>0) {
             getDriver().element().click(acceptAllButton);
         }
         getDriver().element().type(searchField, "SHAFT_Engine").keyPress(searchField, Keys.ENTER);
