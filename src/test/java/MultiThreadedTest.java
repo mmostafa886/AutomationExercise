@@ -46,8 +46,10 @@ public class MultiThreadedTest {
     public void searchGoogleForShaftEngine() {
         getDriver().browser().navigateToURL("https://www.google.com/");
         getDriver().browser().assertThat().title().contains("Google").perform();
-        if (getDriver().element().getElementsCount(acceptAllButton)>0) {
+        if (getDriver().element().isElementDisplayed(acceptAllButton)) {
             getDriver().element().click(acceptAllButton);
+        } else {
+            System.out.println("The Pop-Up not displayed");
         }
         getDriver().element().type(searchField, "SHAFT_Engine").keyPress(searchField, Keys.ENTER);
         getDriver().browser().assertThat().title().contains("SHAFT_Engine");
