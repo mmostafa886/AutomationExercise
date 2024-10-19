@@ -37,6 +37,16 @@ jobs:
       if: always() 
       #This means regardless of the previous step output, this step will be executed
       uses: peaceiris/actions-gh-pages@v2
+      
+      #Rename the generated allure report file to be index.html
+    - name: Rename report to index.html
+      run: |
+       cd ./allure-report
+       for file in *; do
+       mv "$file" "index.html"
+       break
+         done
+
       env:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }} #The GitHub Actions generated token for the workflow to be able to deploy the output to the GitHubPages
         PUBLISH_BRANCH: gh-pages #The branch at which the report will be published to (needs to be spearate branch)
