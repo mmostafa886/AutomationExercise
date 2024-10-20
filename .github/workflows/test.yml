@@ -1,21 +1,13 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Executing Tests with SHAFT
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  #pull_request:
+   # branches: [ "main" ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -27,8 +19,6 @@ jobs:
         java-version: '21'
         distribution: 'zulu'
         cache: maven
-   # - name: Build with Maven
-    #  run: mvn -B package --file pom.xml
 
     - name: Run Tests
       run: mvn clean test -Dtest=MultiThreadedTest
@@ -46,10 +36,5 @@ jobs:
       
       env:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }} #The GitHub Actions generated token for the workflow to be able to deploy the output to the GitHubPages
-        PUBLISH_BRANCH: gh-pages #The branch at which the report will be published to (needs to be spearate branch)
+        PUBLISH_BRANCH: gh-pages #The branch at which the report will be published to (needs to be separate branch)
         PUBLISH_DIR: ./allure-report #This is the directory at which the html report was generated
-
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-   # - name: Update dependency graph
-    #  uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6

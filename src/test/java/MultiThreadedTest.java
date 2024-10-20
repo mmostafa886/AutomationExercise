@@ -16,7 +16,7 @@ public class MultiThreadedTest {
     By acceptAllButton = By.id("L2AGLb");
 
     //////////////TAU\\\\\\\\\\\\\\
-    By certificates = By.linkText("Certificates");
+    By certificates = By.xpath("//nav[@class=\"nav-links can-hide\"]/div/a[@href=\"/certificate/index.html\"]");
     By top100Students = By.xpath("//nav[@class=\"nav-links can-hide\"]/div/a[@href=\"/tau100.html\"]");
     By rankStudents = By.className("tau100-item");
 
