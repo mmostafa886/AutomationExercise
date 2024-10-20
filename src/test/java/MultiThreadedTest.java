@@ -1,12 +1,10 @@
 import com.shaft.driver.SHAFT;
 import com.shaft.validation.Validations;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 
 public class MultiThreadedTest {
     private static ThreadLocal<SHAFT.GUI.WebDriver> driverThreadLocal = new ThreadLocal<>();
@@ -39,7 +37,7 @@ public class MultiThreadedTest {
         initializeDriver();
     }
 
-    @AfterMethod
+    @AfterTest
     public void removeThread() {
         quitDriver();
     }
