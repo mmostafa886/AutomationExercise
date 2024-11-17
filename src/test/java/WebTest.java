@@ -41,7 +41,7 @@ public class WebTest extends TestBase{
         startAPIInstance();
         userApi = new UserApi(api);
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/AccountData.json");
-        signUpAndLogin = menuBar.goToSinUpAndLoginPage();
+        signUpAndLogin = menuBar.goToSignUpAndLoginPage();
         accountCreatedPage = signUpAndLogin.createAccount(randomName, randomName + "@email.com", randomName
                 , testData.getTestData("FirstName"), testData.getTestData("LastName")
                 , testData.getTestData("Address"), testData.getTestData("Country")

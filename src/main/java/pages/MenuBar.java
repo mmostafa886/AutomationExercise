@@ -23,7 +23,7 @@ public class MenuBar {
     }
 
     @Step("Navigate to Signup/Login page")
-    public SignUpAndLogin goToSinUpAndLoginPage() {
+    public SignUpAndLogin goToSignUpAndLoginPage() {
         driver.element().click(signupAndLogin);
         return new SignUpAndLogin(driver);
     }

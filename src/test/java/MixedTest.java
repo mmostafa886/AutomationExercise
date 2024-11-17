@@ -38,7 +38,7 @@ public class MixedTest extends TestBase {
                         , testData.getTestData("State"), testData.getTestData("City")
                         , testData.getTestData("Zipcode"), testData.getTestData("Mobile"))
                 .confirmUserCreationSuccess();
-        signUpAndLogin = menuBar.goToSinUpAndLoginPage();
+        signUpAndLogin = menuBar.goToSignUpAndLoginPage();
         signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess().getMenuBar().logOut();
         userApi.deleteAccount(randomName + "@email.com", randomName);
     }
@@ -65,7 +65,7 @@ public class MixedTest extends TestBase {
                 , testData.getTestData("Address"), testData.getTestData("Country")
                 , testData.getTestData("State"), testData.getTestData("City")
                 , testData.getTestData("Zipcode"), testData.getTestData("Mobile"));
-        signUpAndLogin = menuBar.goToSinUpAndLoginPage();
+        signUpAndLogin = menuBar.goToSignUpAndLoginPage();
         signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess();
         userApi.deleteAccount(randomName + "@email.com", randomName);
     }
