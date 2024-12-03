@@ -10,6 +10,17 @@
 1. Can be done by modifying the properties file `src/main/resources/myProps/WebCapabilities.properties` and change the parameter `headlessExecution=true`
 2. Headless mode is not available for Safari even if using the configuration in the previous step.
 
+## Execution based on Tags
+- The TestNG groups Ex. `[@Test(groups = { "Smoke", "Regression" })]` are used to define tags at which we can use to control the execution.
+- XML files were added `[Regression.xml & Smoke.xml]` in order to be used later in the execution command in order to only execute specific group of tests at which we need to add the snippets below to execute only the tests with the groups' tag contain this group (in the case below: Regression).
+  ```
+          <groups>
+            <run>
+                <include name="Regression"/>
+            </run>
+        </groups>
+  ````
+- The used execution command in this case will be `[mvn clean test -Dsurefire.suiteXmlFiles=Regression.xml]`.
 
 ## Parallel Execution
 1. Hint:

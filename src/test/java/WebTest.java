@@ -26,17 +26,17 @@ public class WebTest extends TestBase{
     }
 
 
-    @Test
+    @Test(groups = {"Smoke", "Regression"},description = "Open the App HomePage")
     public void firstTestMehod() {
         homePage.assertHomePageOpened();
     }
 
-    @Test
+    @Test(groups = {"Smoke", "Regression"},description = "Open the Products Page")
     public void secondTestMethod() {
         menuBar.goToProductsPage().assertProductsPageOpened();
     }
 
-    @Test
+    @Test(groups = {"Regression"},description = "Register a new user, login then delete it")
     public void registerNewUserAndLoginTest() {
         startAPIInstance();
         userApi = new UserApi(api);

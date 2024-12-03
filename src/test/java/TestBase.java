@@ -18,7 +18,9 @@ public class TestBase {
     }
 
     public void startAPIInstance() {
-        api = new SHAFT.API(ApiBase.ApiBaseURL);
+        if (api == null) {
+            api = new SHAFT.API(ApiBase.ApiBaseURL);
+        }
     }
 
 }

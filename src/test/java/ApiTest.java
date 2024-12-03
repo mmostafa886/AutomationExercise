@@ -2,6 +2,7 @@ import apis.ProductApi;
 import apis.UserApi;
 import com.shaft.driver.SHAFT;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -13,34 +14,33 @@ public class ApiTest extends TestBase{
 
     String randomName = RandomStringUtils.randomAlphanumeric(10).toLowerCase();
 
-    @BeforeTest
+    @BeforeClass
     public void beforeTest() {
         startAPIInstance();
+        productApi = new ProductApi(api);
+        userApi = new UserApi(api);
     }
     ///////////////////////////////////////////////////
 
-    @Test(description = "Get a list of all Products")
+    @Test(groups = {"Smoke", "Regression"},description = "Get a list of all Products")
     public void getAllProductsList() {
-        productApi = new ProductApi(api);
         productApi.getProductsList().assertProductsListNotEmpty();
         productApi.asserProductNameAtSpecificIndex(2, "Men Tshirt");
     }
 
-    @Test(description = "Search for the last product in the products list")
+    @Test(groups = {"Smoke"},description = "Search for the last product in the products list")
     public void getTheLastProductInTheProductsList() {
-        productApi = new ProductApi(api);
         productApi.getProductsList().searchForLastProductFromTheProductsList();
     }
 
-    @Test(description = "Search for Random product in the products list")
+    @Test(groups = {"Regression"},description = "Search for Random product in the products list")
     public void getRandomProductFrmTheProductsList() {
-        productApi = new ProductApi(api);
         productApi.getProductsList().searchForRandomProductFromTheProductsList();
     }
 
-    @Test(description = "Create New user account through API then Login from Web and delete account through API Using Request Parameters")
+    @Test(groups = {"Smoke", "Regression"},
+            description = "Create New user account through API then Login from Web and delete account through API Using Request Parameters")
     public void registerNewUserAPIAndLoginTest() {
-        userApi = new UserApi(api);
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/AccountData.json");
         userApi.createAccount(randomName, randomName + "@email.com", randomName
                         , testData.getTestData("FirstName"), testData.getTestData("LastName")

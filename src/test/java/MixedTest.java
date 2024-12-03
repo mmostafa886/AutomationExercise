@@ -28,7 +28,7 @@ public class MixedTest extends TestBase {
     }
     /////////////////////////////////////////////
 
-    @Test(description = "Create New user account through API then Login from Web and delete account through API Using Request Parameters")
+    @Test(groups = {"Smoke", "Regression"},description = "Create New user account through API then Login from Web and delete account through API Using Request Parameters")
     public void registerNewUserAPIAndLoginTest() {
         userApi = new UserApi(api);
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/AccountData.json");
@@ -44,7 +44,7 @@ public class MixedTest extends TestBase {
     }
 
 
-    @Test(description = "Search for a Product")
+    @Test(groups = {"Smoke", "Regression"},description = "Search for a Product")
     public void searchForProduct() {
         productApi = new ProductApi(api);
         String randomProductName = productApi.getProductsList().getRandomProductName();
