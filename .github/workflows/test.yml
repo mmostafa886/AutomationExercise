@@ -21,7 +21,7 @@ jobs:
         cache: maven
 
     - name: Run Tests
-      run: mvn clean test -Dtest=MultiThreadedTest
+      run: mvn clean test
  
       #Rename the generated allure report file to be index.html
     - name: Rename report to index.html
