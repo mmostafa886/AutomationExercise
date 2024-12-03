@@ -15,12 +15,12 @@ public class WebTest extends TestBase{
 
     String randomName = RandomStringUtils.randomAlphanumeric(10).toLowerCase();
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public void beforeTest() {
         startTheWebAppInstance();
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void afterTest() {
         driver.quit();
     }

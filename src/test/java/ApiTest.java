@@ -3,7 +3,6 @@ import apis.UserApi;
 import com.shaft.driver.SHAFT;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class ApiTest extends TestBase{
@@ -14,7 +13,7 @@ public class ApiTest extends TestBase{
 
     String randomName = RandomStringUtils.randomAlphanumeric(10).toLowerCase();
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void beforeTest() {
         startAPIInstance();
         productApi = new ProductApi(api);

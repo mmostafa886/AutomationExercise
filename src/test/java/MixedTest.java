@@ -16,7 +16,7 @@ public class MixedTest extends TestBase {
 
     String randomName = RandomStringUtils.randomAlphanumeric(10).toLowerCase();
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public void beforeTest() {
         startAPIInstance();
         startTheWebAppInstance();
@@ -52,23 +52,4 @@ public class MixedTest extends TestBase {
         productsPage.searchForProducts(randomProductName).compareResultsToSearchText(randomProductName);
     }
 
-    /**
-     * This test won't work as the API ContentType is not JSON but URLENC
-     */
-//    @Test(enabled = false
-//            , description = "Create New user account through API then Login from Web and delete account through API using JSON Request body")
-    public void registerNewUserAPIAndLoginTestWithJSONBody() {
-        userApi = new UserApi(api);
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/AccountData.json");
-        userApi.createAccountJson(randomName, randomName + "@email.com", randomName
-                , testData.getTestData("FirstName"), testData.getTestData("LastName")
-                , testData.getTestData("Address"), testData.getTestData("Country")
-                , testData.getTestData("State"), testData.getTestData("City")
-                , testData.getTestData("Zipcode"), testData.getTestData("Mobile"));
-        signUpAndLogin = menuBar.goToSignUpAndLoginPage();
-        signUpAndLogin.userLogin(randomName + "@email.com", randomName).assertLoginSuccess();
-        userApi.deleteAccount(randomName + "@email.com", randomName);
     }
-
-
-}
