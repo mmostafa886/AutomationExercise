@@ -21,8 +21,8 @@ jobs:
         cache: maven
 
     - name: Run Tests
-      run: mvn clean test
- 
+      run: mvn clean test -Dsurefire.suiteXmlFiles=Regression.xml
+
       #Rename the generated allure report file to be index.html
     - name: Rename report to index.html
       if: always()
